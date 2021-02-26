@@ -49,6 +49,44 @@ Next Wsh
 End Sub
 
 
+Fusion avec prise en compte des feuilles start et stop et suppression des lignes vide (a verif) 
+Sub Fusion()
+
+'clear de la feuille bdd sauf entête
+With Worksheets("BDD").Rows("6:65536").EntireRow.Delete
+End With
+'création d'une variable qui met fin à la boucle de fusion
+Dim cut As String
+'création d'une variable qui démarre la boucle de fusion
+Dim deb As String
+'récupération de l'index de la feuille Stop
+cut = Worksheets("Stop").Index
+'récupération de l'index de la feuille Start
+deb = Worksheets("Start").Index
+'Boucle qui parcours les feuilles
+For Each Wsh In Worksheets
+'si la feuille a un index sup ou inf au pages start and stop
+If Wsh.Index < cut And Wsh.Index > deb Then
+
+ If Wsh.Name <> "BDD" Then
+ Wsh.[A6].Resize(Wsh.[A65536].End(xlUp).Row - 0, 14).Copy Destination:=Worksheets("BDD").[A65536].End(xlUp).Offset(1, 0) 'fonction qui copie les feuilles de calcul dans la feuille BDD
+End If
+End If
+Next Wsh
+End Sub
+
+
+'suppression des lignes totalement vide
+  Dim i&
+    For i = Range("A" & Rows.Count).End(xlUp).Row To 1 Step -1
+        If WorksheetFunction.CountA(Range("A" & i & ":AAA" & i)) = 0 Then
+            Rows(i & ":" & i).Delete shift:=xlUp
+        End If
+    Next i
+
+
+Next Wsh
+End Sub
 
 
 
