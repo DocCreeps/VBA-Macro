@@ -1,0 +1,11 @@
+Sub Macro1()
+
+For Each Cel In Range("A:A" & Range("D" & Rows.Count).End(xlUp).Row)
+    r = Cel.Row
+        If Cel.Value = "" Then
+            end = Columns(4).Find("*", Cel, , xlByRows, xlNext).Row - 1
+            Range("A" & r & ":A" & end).Rows.Group
+        End If
+Next Cel
+
+End Sub
