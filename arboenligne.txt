@@ -1,11 +1,29 @@
 Sub Macro1()
 
-For Each Cel In Range("A:A" & Range("D" & Rows.Count).End(xlUp).Row)
+For Each Cel In Range("A1:A" & Range("A" & Rows.Count).End(xlUp).Row)
     r = Cel.Row
-        If Cel.Value = "" Then
-            end = Columns(4).Find("*", Cel, , xlByRows, xlNext).Row - 1
-            Range("A" & r & ":A" & end).Rows.Group
+        If Cel.Value = "|" Then
+            derlig = Columns(1).Find("*", Cel, , xlByRows, xlNext).Row - 1
+            Range("A" & r & ":A" & derlig).Rows.Group
         End If
 Next Cel
 
+
+For Each Cel In Range("B1:B" & Range("B" & Rows.Count).End(xlUp).Row)
+    r = Cel.Row
+        If Cel.Value = "|" Then
+            derlig = Columns(2).Find("*", Cel, , xlByRows, xlNext).Row - 1
+            Range("B" & r & ":B" & derlig).Rows.Group
+        End If
+Next Cel
+
+
+For Each Cel In Range("C1:C" & Range("C" & Rows.Count).End(xlUp).Row)
+    r = Cel.Row
+        If Cel.Value = "|" Then
+            derlig = Columns(3).Find("*", Cel, , xlByRows, xlNext).Row - 1
+            Range("C" & r & ":C" & derlig).Rows.Group
+        End If
+Next Cel
+etc
 End Sub
