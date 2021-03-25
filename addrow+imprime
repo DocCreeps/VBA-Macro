@@ -13,3 +13,4 @@ Private Sub ImpressionFiche_Click()
 
 ActiveWindow.SelectedSheets.PrintOut Copies:=1, Collate:=True, IgnorePrintAreas:=False
 End Sub
+
