@@ -1,0 +1,15 @@
+Private Sub Ajoutproduit_Click()
+'
+' NVProd Macro
+'
+Dim nvlign As Long
+nvlign = Range("A" & Rows.Count).End(xlUp).Row + 1
+Rows(nvlign).Insert
+ActiveSheet.ListObjects("Tableau1").Resize Range("A2:P" & nvlign)
+Range("A" & nvlign).Select
+End Sub
+
+Private Sub ImpressionFiche_Click()
+
+ActiveWindow.SelectedSheets.PrintOut Copies:=1, Collate:=True, IgnorePrintAreas:=False
+End Sub
