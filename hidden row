@@ -1,0 +1,26 @@
+
+
+
+Private Sub CommandButton1_Click()
+
+Dim code As Object
+'pour code produit
+'Set code = Worksheets("Base de données").Range("B2:B65535").Find(What:=Modifier.TextBox1.Value)
+Set code = Worksheets("Base de données").Range("A2:A65535").Find(What:=Modifier.TextBox1.Value) 'nom prod
+Dim Rg As Integer
+
+Rg = code.Row
+
+If code Is Nothing Then
+MsgBox "nom de produit non trouvé"
+Else
+Range("A3:A65536").EntireRow.Hidden = True
+Range("A" & Rg).EntireRow.Hidden = False
+MsgBox "Produit trouvé"
+End If
+Unload Me
+End Sub
+
+Private Sub TextBox1_Change()
+
+End Sub
