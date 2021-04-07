@@ -1,0 +1,24 @@
+Sub test()
+'definir le classeur actuel
+Set w1 = ActiveWorkbook
+'definir le second classeur (doit etre ouvert)
+Set w2 = Workbooks("Miss_Classeur6.xls")
+'definir la 1ere couleur
+coul = 3
+'pour chaque cellule de la colonne A du classeur actuel
+For n = 2 To w1.Sheets("Feuil1").Range("A65536").End(xlUp).Row
+'pour chaque ligne de la colonne F du classeur a controler
+  For m = 2 To w2.Sheets("Feuil1").Range("F65536").End(xlUp).Row
+' si le contenu de la colonne A du classeur actuel  est inclus dans la colonne F du second classeur alors
+    If InStr(w2.Sheets("Feuil1").Range("F" & m), w1.Sheets("Feuil1").Range("A" & n)) <> 0 Then
+'appliquer la couleur aux 2 cellules concernées
+       w1.Sheets("Feuil1").Range("A" & n).Interior.ColorIndex = coul
+       w2.Sheets("Feuil1").Range("F" & m).Interior.ColorIndex = coul
+ 'increment de la couleur
+       coul = coul + 1
+'si depassement revenir a la 1ere couleur
+       If coul > 56 Then coul = 3
+    End If
+  Next m
+Next n
+End Sub
