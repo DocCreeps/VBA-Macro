@@ -2,22 +2,22 @@ Sub Valeur_cherchee()
 Dim Destination As Worksheet, MaSource As Workbook, Source As Worksheet, i As Long, Trouve As Range
  
     Set Destination = ThisWorkbook.Sheets("Customers_Export(8)")
-    Set MaSource = Workbooks.Open("C:\Users\dvericel\Desktop\Rapport.xls")
+    Set MaSource = Workbooks.Open("C:\Users\dvericel\Desktop\Rapport.xlsx")
     Set Source = Workbooks(MaSource.Name).Sheets("Rapport")
 
 
 Application.ScreenUpdating = False
-    For i = 2 To 17
-
-        Set Trouve = Source.Range("E" & j).Find(Destination.Range("C" & i), LookAt:=xlWhole)
-        If Trouve Is Nothing Then
-           Destination.Range("C" & i).Interior.Color = RGB(255, 0, 0)
+    For i = 2 To 350
+   
+    Set Cellule = Source.Range("E2:E300").Find(what = Destination.Range("C2" & i), LookAt:=xlWhole)
+        If Cellule Is Nothing Then
+        Destination.Cells(i, 6).Value = "NoK"
         Else
-             Destination.Range("C" & i).Interior.Color = RGB(0, 255, 0)
+             Destination.Cells(i, 6).Value = "OK"
         End If
-  
-    Next
-    
+      
+    Next i
+
 Application.ScreenUpdating = True
         Set Destination = Nothing: Set MaSource = Nothing: Set Source = Nothing
 End Sub
